@@ -84,6 +84,9 @@ case "$1" in
       chmod 0700 "$dir"
     done
 
+    # Ensure required gpg-agent.conf is in place, see #4013
+    echo allow-loopback-pinentry > /var/lib/securedrop/keys/gpg-agent.conf
+
     chown -R www-data:www-data /var/lib/securedrop /var/www/securedrop
 
     pip install --no-index --find-links=/var/securedrop/wheelhouse --upgrade \
